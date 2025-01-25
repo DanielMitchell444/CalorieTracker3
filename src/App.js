@@ -14,6 +14,7 @@ function App() {
 
 
   const [steps, nextSteps] = useState(1)
+  const [meals, setMeals] = useState("")
   const [signUpData, setSignUpData] = useState({
    email: "",
    password: "",
@@ -24,10 +25,16 @@ function App() {
   })
 
 
+
+
+
+  const [progress, setProgress] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false);
 
   
   const [toggle, setToggle] = useState(false)
+
+  const [inputChange, handleInputChange] = useState("")
 
 
   const [selectedValue, setSelectedValue] = useState("")
@@ -39,6 +46,11 @@ function App() {
   })
 
   const [errors, setErrors] = useState({})
+
+
+  const getProgress = () => {
+    setProgress(0)
+  }
 
 
   const handleGoogleSignIn = async () => {
@@ -71,6 +83,16 @@ function App() {
     const handleSelectedValue = (e) => {
       setSelectedValue(e.target.value)
     }
+
+     const getData = async () => {
+
+    fetch('"https://platform.fatsecret.com/rest/food/autocomplete/v2"')
+      .then(response => response.json())
+      .then(data => {
+        setMeals(data)
+      })
+  }
+
 
 
     const handleSignIn = async (e) => {
@@ -164,6 +186,10 @@ function App() {
 
       }
     };
+
+  const handleInput = (e) => {
+   handleInputChange(e.target.value)
+  }
   const handleNext = () => {
     nextSteps(steps + 1)
   }
@@ -245,6 +271,7 @@ const logout = async () => {
   toggle = {toggle}
   toggleMenu = {toggleMenu}
   menuOpen = {menuOpen}
+  progress = {progress}
 
   />
 }
@@ -256,6 +283,7 @@ const logout = async () => {
   toggle = {toggle}
   toggleMenu = {toggleMenu}
   menuOpen = {menuOpen}
+  getMealData = {getData}
   />
 }
 

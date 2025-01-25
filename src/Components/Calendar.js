@@ -69,6 +69,16 @@ const Calendar = () => {
         </button>
       </div>
       <div className={styles.daysGrid}>{renderDays()}</div>
+      <div className= {styles.bottomContainer}>
+        <div className= {styles.daysContainer}>
+        <h1>Days Missed</h1>
+        <p>21 Days</p>
+     </div>
+     <div className= {styles.bottomContainer2}>
+      <h1>Percent of days green</h1>
+      <p>%</p>
+     </div>
+      </div>
     </div>
   );
 };
